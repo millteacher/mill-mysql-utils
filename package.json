@@ -1,0 +1,23 @@
+{
+  "name": "mill-mysql-utils",
+  "version": "1.0.0",
+  "description": "操作MySQL的工具类",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://millteacher@github.com/millteacher/mill-mysql-utils.git"
+  },
+  "author": "mill",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/millteacher/mill-mysql-utils/issues"
+  },
+  "homepage": "https://github.com/millteacher/mill-mysql-utils#readme",
+  "dependencies": {
+    "mysql": "^2.13.0",
+    "promise": "^7.1.1"
+  }
+}
