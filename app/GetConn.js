@@ -47,10 +47,12 @@ var doquery=function  (sql,valuse) {
 			function  (err,rows,fields) {
 			if(err){
 				connection.end();//关闭链接
-				reject(err,sql);
+				reject({message:err,data:sql});
 			}
 			// console.log(fields);
-			resolve(rows,fields);
+			var arg={};
+			arg.rows=rows;arg.fields=fields
+			resolve(arg);
 		});
 	})
 	Promise.all([result]).then(function () {
