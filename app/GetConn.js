@@ -38,6 +38,7 @@ function proxyDoquery (){
 
 var doquery=function  (sql,valuse) {
 	var result={};
+	connection=mysql.createConnection(connConf);
 	connection.connect();//打开连接
 	sql = mysql.format(sql, valuse);
 
@@ -62,6 +63,34 @@ var doquery=function  (sql,valuse) {
 	return result;
 }
 
+/**
+	实时的去关闭连接,和上面方法唯一的区别是关闭连接 的时间
+*/
+let getQuery=function (sql,valuse) {
+	var result={};
+	connection=mysql.createConnection(connConf);
+	connection.connect();//打开连接
+	sql = mysql.format(sql, valuse);
+
+	var result=new Promise(function (resolve,reject) {
+		
+		connection.query(sql,valuse,
+			function  (err,rows,fields) {
+			if(err){
+				connection.end();//关闭链接
+				reject({message:err,data:sql});
+			}
+			// console.log(fields);
+			var arg={};
+			arg.rows=rows;arg.fields=fields
+			connection.end();//关闭链接
+			console.log("链接已关闭");
+			resolve(arg);
+		});
+	})
+	return result;
+}
 
 exports.doQuery=proxyDoquery;
+exports.getQuery=getQuery;
 

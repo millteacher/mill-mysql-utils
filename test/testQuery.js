@@ -5,9 +5,9 @@ app.simpleConfig({
 		user:'root',
 		password:'root'
 })
-app.doQuery("SELECT * from information_schema.`COLUMNS` where table_schema=?",['twdrp'])
+app.getQuery("SELECT * from information_schema.`COLUMNS` where table_schema=?",['twdrp'])
 .then(function (data) {
-	console.log(data.fields);
+	console.log(data.rows);
 },function (msg) {
 	console.log(msg.data);
 });
